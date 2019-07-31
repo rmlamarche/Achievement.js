@@ -1,0 +1,33 @@
+{
+  "name": "achievement.js",
+  "version": "0.0.1-alpha",
+  "description": "A Node.js library for tracking user achievements and progress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmlamarche/Achievement.js.git"
+  },
+  "keywords": [
+    "achievement",
+    "gamify",
+    "user",
+    "progress"
+  ],
+  "author": "Ryan LaMarche",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmlamarche/Achievement.js/issues"
+  },
+  "homepage": "https://github.com/rmlamarche/Achievement.js#readme",
+  "dependencies": {
+    "mongoose": "^5.6.7"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
+  }
+}
