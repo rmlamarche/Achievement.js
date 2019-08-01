@@ -12,8 +12,9 @@ app.listen(9000, () => {
   console.log('listening...');
 });
 
-const achievement = require('../')(
+const achievementsjs = require('../')(
   {
+    scope: '/api/',
     MongoURI: {
       database: 'achievement',
       user: 'achievement',
@@ -24,13 +25,23 @@ const achievement = require('../')(
   }
 );
 
-achievement.register(
+achievementsjs.achievements.add(
   {
-    
+    title: 'Read 5 Articles',
+    action: '/article/read',
+    pointValue: 10,
+    activate: true,
+    requiredCondition: {
+      qty: 5
+    }
   }
-);
+).then(achievement => {
+  console.log(JSON.stringify(achievement, null, 2));
+}).catch(err => {
+  // I don't care if the achievement already exists
+});
 
-app.use(achievement);
+app.use(achievementsjs);
 
 app.get('/achievements', (req, res, next) => {
   Achievement.find().exec((err, achievements) => {
@@ -42,6 +53,15 @@ app.get('/achievements', (req, res, next) => {
 });
 
 app.get('/users', (req, res, next) => {
+  UserAchievement.find().exec((err, users) => {
+    if (err) {
+      return next(err);
+    }
+    return res.json(users);
+  });
+});
+
+app.get('/api/article/read', (req, res, next) => {
   UserAchievement.find().exec((err, users) => {
     if (err) {
       return next(err);
