@@ -1,6 +1,19 @@
 # Achievement.js
 
-A Node.js library for tracking user achievements and progress
+A Node.js library for tracking user achievements and progress using express and MongoDB.
+
+---
+
+## Table of Contents
+
+* [Install](#Install)
+* [Overview](#Overview)
+  * [Connect to express and MongoDB](#Connect-your-express-app-to-achievement.js)
+* [API](#API)
+  * [achievements](#achievements)
+  * [users](#users)
+
+---
 
 ## Install
 
@@ -12,7 +25,7 @@ npm install achievement-js --save
 
 ### Connect your express app to achievement.js
 
-Achievement.js will automatically monitor your api endpoints for tracking user achievements once connected. All you will need to do is add users and add achievements, let Achievement.js do the rest.
+Achievement.js will automatically monitor your api endpoints for tracking user achievements once connected. All you will need to do is add users and add achievements. Let Achievement.js do the rest.
 
 ```javascript
 const express = require('express');
