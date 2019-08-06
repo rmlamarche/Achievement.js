@@ -25,6 +25,8 @@ const achievementsjs = require('../')(
   }
 );
 
+// achievementsjs.achievements.
+
 achievementsjs.achievements.add(
   {
     title: 'Read 5 Articles',
