@@ -46,7 +46,7 @@ const options = {
 
 const achievementjs = require('achievement-js')(options);
 
-app.use(achievementjs);
+app.use(achievementjs.router);
 
 ```
 
