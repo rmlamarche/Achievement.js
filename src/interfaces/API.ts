@@ -1,7 +1,16 @@
-import AchievementsAPI from '../api/achievements/AchievementsAPI';
-import UsersAPI from '../api/users/UsersAPI';
+import { Model } from "mongoose";
+import { ObjectId } from "bson";
 
 export default interface API {
-  achievements: AchievementsAPI;
-  users: UsersAPI;
+  _model: Model<any>;
+
+  add(item: object): Promise<any>;
+
+  addAll(items: object[]): Promise<any[]>;
+
+  remove(item: ObjectId): Promise<any>;
+
+  remove(id: ObjectId): Promise<boolean>;
+  
+  // removeAll(ids: ObjectId[]): Promise<boolean[]>;
 }

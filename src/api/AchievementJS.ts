@@ -1,26 +1,28 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import * as mongoose from 'mongoose';
 
-import API from '../interfaces/API';
+import IAPI from '../interfaces/IAPI';
 import AchievementJSConfig, { MongoURI } from '../interfaces/configs/AchievementJSConfig';
 import Achievement from '../models/Achievement';
 import AchievementsAPI from './achievements/AchievementsAPI';
 import UsersAPI from './users/UsersAPI';
 
-/**
- * @version 0.0.1
- */
 export default class AchievementJS {
 
-  public static version: string = '0.0.1';
+  private readonly _config: AchievementJSConfig;
 
-  private _router: Router;
+  private readonly _router: Router;
 
-  private _achievementsAPI: AchievementsAPI;
-  private _usersAPI: UsersAPI;
+  private readonly _achievementsAPI: AchievementsAPI;
+  private readonly _usersAPI: UsersAPI;
 
   public constructor(config: AchievementJSConfig) {
+    this._config = config;
+
     this._router = Router();
+
+    this._achievementsAPI = new AchievementsAPI();
+    this._usersAPI = new UsersAPI();
 
     const mongoURI = config != null && typeof config.MongoURI === 'string' ? config.MongoURI : `mongodb://${(config.MongoURI as MongoURI).user}:${(config.MongoURI as MongoURI).password}@${(config.MongoURI as MongoURI).host}:${(config.MongoURI as MongoURI).port}/${(config.MongoURI as MongoURI).database}`;
     mongoose.connect(mongoURI, { useNewUrlParser: true }).catch((err) => {
@@ -33,7 +35,7 @@ export default class AchievementJS {
           'meta.isActive': true,
           '$and': [
             {
-              $or: [
+              '$or': [
                 {
                   'meta.expiration': {
                     $lte: new Date(),
@@ -45,7 +47,7 @@ export default class AchievementJS {
               ],
             },
             {
-              $or: [
+              '$or': [
                 {
                   action: req.url.split(config.scope).slice(1)[0].split('?').shift(),
                 },
@@ -83,7 +85,7 @@ export default class AchievementJS {
     return this._router;
   }
 
-  public get api(): API {
+  public get api(): IAPI {
     return {
       achievements: this._achievementsAPI,
       users: this._usersAPI,

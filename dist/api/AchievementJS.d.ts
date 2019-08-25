@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import API from '../interfaces/API';
+import IAPI from '../interfaces/IAPI';
 import AchievementJSConfig from '../interfaces/configs/AchievementJSConfig';
 export default class AchievementJS {
-    static version: string;
-    private _router;
-    private _achievementsAPI;
-    private _usersAPI;
+    private readonly _config;
+    private readonly _router;
+    private readonly _achievementsAPI;
+    private readonly _usersAPI;
     constructor(config: AchievementJSConfig);
     readonly router: Router;
-    readonly api: API;
+    readonly api: IAPI;
 }

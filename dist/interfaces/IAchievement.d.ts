@@ -1,15 +1,15 @@
 import { Document, Schema } from 'mongoose';
 import { Op, Statistic } from '../enums';
-export interface IAchievement extends Document {
+export default interface IAchievement extends Document {
     title: string;
     action: string;
-    pointValue: number;
-    meta: {
+    pointValue?: number;
+    meta?: {
         isActive: boolean;
         expiration: Date;
         isHidden: boolean;
     };
-    badge: {
+    badge?: {
         title: string;
         src: string;
     };
@@ -17,7 +17,7 @@ export interface IAchievement extends Document {
         statistic: Statistic;
         operator: Op;
         qty: number;
-        dependencies: {
+        dependencies?: {
             sequential: boolean;
             achievements: [{
                 type: Schema.Types.ObjectId;

@@ -3,9 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const mongoose = require("mongoose");
 const Achievement_1 = require("../models/Achievement");
+const AchievementsAPI_1 = require("./achievements/AchievementsAPI");
+const UsersAPI_1 = require("./users/UsersAPI");
 class AchievementJS {
     constructor(config) {
+        this._config = config;
         this._router = express_1.Router();
+        this._achievementsAPI = new AchievementsAPI_1.default();
+        this._usersAPI = new UsersAPI_1.default();
         const mongoURI = config != null && typeof config.MongoURI === 'string' ? config.MongoURI : `mongodb://${config.MongoURI.user}:${config.MongoURI.password}@${config.MongoURI.host}:${config.MongoURI.port}/${config.MongoURI.database}`;
         mongoose.connect(mongoURI, { useNewUrlParser: true }).catch((err) => {
             console.error(err);
@@ -15,7 +20,7 @@ class AchievementJS {
                 'meta.isActive': true,
                 '$and': [
                     {
-                        $or: [
+                        '$or': [
                             {
                                 'meta.expiration': {
                                     $lte: new Date(),
@@ -27,7 +32,7 @@ class AchievementJS {
                         ],
                     },
                     {
-                        $or: [
+                        '$or': [
                             {
                                 action: req.url.split(config.scope).slice(1)[0].split('?').shift(),
                             },
@@ -59,5 +64,4 @@ class AchievementJS {
         };
     }
 }
-AchievementJS.version = '0.0.1';
 exports.default = AchievementJS;

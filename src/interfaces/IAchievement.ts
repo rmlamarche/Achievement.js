@@ -2,16 +2,16 @@ import { Document, Schema } from 'mongoose';
 
 import { Op, Statistic } from '../enums';
 
-export interface IAchievement extends Document {
+export default interface IAchievement extends Document {
   title: string; // name of achievement
   action: string; // API endpoint to listen for
-  pointValue: number; // what's it worth?
-  meta: {
+  pointValue?: number; // what's it worth?
+  meta?: {
     isActive: boolean, // is achievement active
     expiration: Date, // expiration
     isHidden: boolean, // user can see progress
   };
-  badge: {
+  badge?: {
     title: string, // name of badge
     src: string, // file path to image/svg
   };
@@ -19,7 +19,7 @@ export interface IAchievement extends Document {
     statistic: Statistic,
     operator: Op,
     qty: number,
-    dependencies: {
+    dependencies?: {
       sequential: boolean,
       achievements: [
         {
