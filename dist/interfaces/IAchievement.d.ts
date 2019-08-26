@@ -8,6 +8,7 @@ export default interface IAchievement extends Document {
         isActive: boolean;
         expiration: Date;
         isHidden: boolean;
+        continueRouting: boolean;
     };
     badge?: {
         title: string;

@@ -8,8 +8,6 @@ export default interface API {
 
   addAll(items: object[]): Promise<any[]>;
 
-  remove(item: ObjectId): Promise<any>;
-
   remove(id: ObjectId): Promise<boolean>;
   
   // removeAll(ids: ObjectId[]): Promise<boolean[]>;

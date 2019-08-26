@@ -10,6 +10,7 @@ export default interface IAchievement extends Document {
     isActive: boolean, // is achievement active
     expiration: Date, // expiration
     isHidden: boolean, // user can see progress
+    continueRouting: boolean // go to next route or send response to client
   };
   badge?: {
     title: string, // name of badge
