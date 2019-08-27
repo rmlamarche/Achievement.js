@@ -1,14 +1,29 @@
 import { Model } from "mongoose";
 import { ObjectId } from "bson";
 
-export default interface API {
+export default abstract class API {
   _model: Model<any>;
 
-  add(item: object): Promise<any>;
+  constructor(model: Model<any>) {
+    this._model = model;
+  }
 
-  addAll(items: object[]): Promise<any[]>;
+  add(item: object): Promise<any> {
+    return this._model.create(item);
+  }
 
-  remove(id: ObjectId): Promise<boolean>;
+  addAll(items: object[]): Promise<any[]> {
+    return this._model.create(items);
+  }
+
+  remove(id: ObjectId): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this._model.findByIdAndDelete(id).then(() => {
+        resolve(true);
+      }).catch(err => {
+        reject(err);
+      });
+    });
+  }
   
-  // removeAll(ids: ObjectId[]): Promise<boolean[]>;
 }
