@@ -5,17 +5,17 @@ mongoose_1.set('useCreateIndex', true);
 exports.UserSchema = new mongoose_1.Schema({
     userID: {
         type: String,
-        index: true
+        index: true,
     },
     points: {
         total: {
             type: Number,
-            default: 0
+            default: 0,
         },
         current: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+        },
     },
     achievements: [
         {
@@ -23,14 +23,14 @@ exports.UserSchema = new mongoose_1.Schema({
             progress: Number,
             dateStarted: {
                 type: Date,
-                default: Date.now
+                default: Date.now,
             },
             dateAwarded: Date,
             achievement: {
                 type: mongoose_1.Schema.Types.ObjectId,
-                ref: 'Achievement'
-            }
-        }
+                ref: 'Achievement',
+            },
+        },
     ],
 });
 const User = mongoose_1.model('User', exports.UserSchema);

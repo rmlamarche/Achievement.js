@@ -8,17 +8,17 @@ export const UserSchema = new Schema(
   {
     userID: {
       type: String,
-      index: true
+      index: true,
     },
     points: {
       total: {
         type: Number,
-        default: 0
+        default: 0,
       },
       current: {
         type: Number,
-        default: 0
-      }
+        default: 0,
+      },
     },
     achievements: [
       {
@@ -26,16 +26,16 @@ export const UserSchema = new Schema(
         progress: Number,
         dateStarted: {
           type: Date,
-          default: Date.now
+          default: Date.now,
         },
         dateAwarded: Date,
         achievement: {
           type: Schema.Types.ObjectId,
-          ref: 'Achievement'
-        }
-      }
+          ref: 'Achievement',
+        },
+      },
     ],
-  }
+  },
 );
 
 const User = model<IUser>('User', UserSchema);

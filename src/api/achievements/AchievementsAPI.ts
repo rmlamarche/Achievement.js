@@ -6,7 +6,7 @@ import { ObjectId } from 'bson';
 
 export default class AchievementsAPI extends API {
 
-  _model: Model<IAchievement>
+  public _model: Model<IAchievement>;
 
   constructor() {
     super(Achievement);

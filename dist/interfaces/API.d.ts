@@ -1,7 +1,7 @@
-import { Model } from "mongoose";
-import { ObjectId } from "bson";
+import { Model } from 'mongoose';
+import { ObjectId } from 'bson';
 export default abstract class API {
-    _model: Model<any>;
+    private _model;
     constructor(model: Model<any>);
     add(item: object): Promise<any>;
     addAll(items: object[]): Promise<any[]>;

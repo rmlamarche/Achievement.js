@@ -29,8 +29,8 @@ export const AchievementSchema = new Schema(
       },
       continueRouting: {
         type: Boolean,
-        default: false
-      }
+        default: false,
+      },
     },
     badge: {
       title: String, // title for badge

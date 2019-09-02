@@ -20,7 +20,7 @@ class AchievementJS {
                 'meta.isActive': true,
                 '$and': [
                     {
-                        '$or': [
+                        $or: [
                             {
                                 'meta.expiration': {
                                     $lte: new Date(),
@@ -32,7 +32,7 @@ class AchievementJS {
                         ],
                     },
                     {
-                        '$or': [
+                        $or: [
                             {
                                 action: req.url.split(config.scope).slice(1)[0].split('?').shift(),
                             },

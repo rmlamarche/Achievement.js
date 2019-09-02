@@ -27,8 +27,8 @@ exports.AchievementSchema = new mongoose_1.Schema({
         },
         continueRouting: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
     badge: {
         title: String,
