@@ -57,11 +57,11 @@ exports.AchievementSchema = new mongoose_1.Schema({
             achievements: [
                 {
                     type: mongoose_1.Schema.Types.ObjectId,
-                    ref: 'Achievement',
+                    ref: 'Achievementjs_Achievement',
                 },
             ],
         },
     },
 });
-const Achievement = mongoose_1.model('Achievement', exports.AchievementSchema);
+const Achievement = mongoose_1.model('Achievementjs_Achievement', exports.AchievementSchema);
 exports.default = Achievement;

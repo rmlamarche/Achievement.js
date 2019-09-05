@@ -4,16 +4,22 @@
 
 
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 
 app.listen(9000, () => {
   console.log('listening...');
 });
 
-
 const AchievementJS = require('../dist/index.js')(
   {
-
+    MongoURI: {
+      host: 'localhost',
+      port: 27017,
+      user: 'Achievement',
+      database: 'achievement',
+      password: 'achievement'
+    }
   }
 );
 
@@ -29,6 +35,17 @@ AchievementJS.api.achievements.add(
     requiredCondition: {
       qty: 5
     }
+  }
+).then(achievement => {
+  console.log(JSON.stringify(achievement, null, 2));
+}).catch(err => {
+  // I don't care if the achievement already exists
+});
+
+
+AchievementJS.api.users.add(
+  {
+    userID: '5d71116ff016c7193073dac7'
   }
 ).then(achievement => {
   console.log(JSON.stringify(achievement, null, 2));

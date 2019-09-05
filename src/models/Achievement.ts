@@ -59,7 +59,7 @@ export const AchievementSchema = new Schema(
         achievements: [ // the dependencies
           {
             type: Schema.Types.ObjectId,
-            ref: 'Achievement',
+            ref: 'Achievementjs_Achievement',
           },
         ],
       },
@@ -67,5 +67,5 @@ export const AchievementSchema = new Schema(
   },
 );
 
-const Achievement = model<IAchievement>('Achievement', AchievementSchema);
+const Achievement = model<IAchievement>('Achievementjs_Achievement', AchievementSchema);
 export default Achievement;

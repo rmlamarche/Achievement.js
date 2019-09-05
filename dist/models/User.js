@@ -6,6 +6,7 @@ exports.UserSchema = new mongoose_1.Schema({
     userID: {
         type: String,
         index: true,
+        unique: true,
     },
     points: {
         total: {
@@ -28,10 +29,10 @@ exports.UserSchema = new mongoose_1.Schema({
             dateAwarded: Date,
             achievement: {
                 type: mongoose_1.Schema.Types.ObjectId,
-                ref: 'Achievement',
+                ref: 'Achievementjs_Achievement',
             },
         },
     ],
 });
-const User = mongoose_1.model('User', exports.UserSchema);
+const User = mongoose_1.model('Achievementjs_User', exports.UserSchema);
 exports.default = User;

@@ -9,6 +9,7 @@ export const UserSchema = new Schema(
     userID: {
       type: String,
       index: true,
+      unique: true,
     },
     points: {
       total: {
@@ -31,12 +32,12 @@ export const UserSchema = new Schema(
         dateAwarded: Date,
         achievement: {
           type: Schema.Types.ObjectId,
-          ref: 'Achievement',
+          ref: 'Achievementjs_Achievement',
         },
       },
     ],
   },
 );
 
-const User = model<IUser>('User', UserSchema);
+const User = model<IUser>('Achievementjs_User', UserSchema);
 export default User;
