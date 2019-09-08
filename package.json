@@ -2,6 +2,7 @@
   "name": "achievement.js",
   "version": "0.0.1-alpha",
   "description": "A Node.js library for tracking user achievements and progress",
+  "author": "Ryan LaMarche <ry.lamarchee@gmail.com>",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
@@ -20,9 +21,11 @@
     "achievement",
     "gamify",
     "user",
-    "progress"
+    "progress",
+    "express",
+    "mongodb",
+    "mongoose"
   ],
-  "author": "Ryan LaMarche",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rmlamarche/Achievement.js/issues"
@@ -42,5 +45,11 @@
     "rimraf": "^3.0.0",
     "tslint": "^5.19.0",
     "typescript": "^3.5.3"
-  }
+  },
+  "files": [
+    "dist/",
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ]
 }

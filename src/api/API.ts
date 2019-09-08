@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import { ObjectId } from 'bson';
 
 export default abstract class API {
-  protected _model: Model<any>;
+  protected readonly _model: Model<any>;
 
   constructor(model: Model<any>) {
     this._model = model;

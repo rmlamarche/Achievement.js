@@ -11,7 +11,7 @@ app.listen(9000, () => {
   console.log('listening...');
 });
 
-const AchievementJS = require('../dist/index.js')(
+const AchievementJS = require('../index.js')(
   {
     MongoURI: {
       host: 'localhost',
@@ -47,8 +47,8 @@ AchievementJS.api.users.add(
   {
     userID: '5d71116ff016c7193073dac7'
   }
-).then(achievement => {
-  console.log(JSON.stringify(achievement, null, 2));
+).then(user => {
+  console.log(JSON.stringify(user, null, 2));
 }).catch(err => {
   // I don't care if the achievement already exists
 });

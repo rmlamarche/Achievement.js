@@ -5,16 +5,20 @@ export declare namespace IUserNS {
         current: number;
     }
     interface AchievementsShape {
+        type: Schema.Types.ObjectId;
+        ref: 'Achievement';
+    }
+    interface AchievementsProgressShape {
         data: object;
         progress: number;
         dateStarted: Date;
         dateAwarded: Date;
-        achievement: Schema.Types.ObjectId;
+        achievement: AchievementsShape;
     }
     export interface IUserShape {
         userID: string;
         points?: PointsShape;
-        achievements?: [AchievementsShape];
+        achievements?: [AchievementsProgressShape];
     }
     export interface IUser extends Document, IUserShape {
     }
