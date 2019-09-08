@@ -1,6 +1,6 @@
 # Achievement.js
 
-A Node.js library for tracking user achievements and progress using express and MongoDB.
+A Node.js library for tracking user achievements and progress using express and MongoDB. Project Architecture can be found [here](https://www.lucidchart.com/documents/view/fb160706-6f61-4ea6-b010-68c3e3bb462c/0_0).
 
 ---
 
@@ -46,7 +46,7 @@ const options = {
 
 const achievementjs = require('achievement-js')(options);
 
-app.use(achievementjs);
+app.use(achievementjs.router);
 
 ```
 

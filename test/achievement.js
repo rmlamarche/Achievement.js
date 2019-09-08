@@ -2,32 +2,31 @@
  * TODO Eventually I dream this file will have tests in it.
  */
 
-const UserAchievement = require('../lib/models/UserAchievement.js');
-const Achievement = require('../lib/models/Achievement.js');
 
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 
 app.listen(9000, () => {
   console.log('listening...');
 });
 
-const achievementsjs = require('../')(
+const AchievementJS = require('../dist/index.js')(
   {
-    scope: '/api/',
     MongoURI: {
+      host: 'localhost',
+      port: 27017,
+      user: 'Achievement',
       database: 'achievement',
-      user: 'achievement',
-      password: 'achievement',
-      host: '127.0.0.1',
-      port: '27017'
+      password: 'achievement'
     }
   }
 );
 
+
 // achievementsjs.achievements.
 
-achievementsjs.achievements.add(
+AchievementJS.api.achievements.add(
   {
     title: 'Read 5 Articles',
     action: '/article/read',
@@ -43,7 +42,18 @@ achievementsjs.achievements.add(
   // I don't care if the achievement already exists
 });
 
-app.use(achievementsjs);
+
+AchievementJS.api.users.add(
+  {
+    userID: '5d71116ff016c7193073dac7'
+  }
+).then(achievement => {
+  console.log(JSON.stringify(achievement, null, 2));
+}).catch(err => {
+  // I don't care if the achievement already exists
+});
+
+app.use(AchievementJS.router);
 
 app.get('/achievements', (req, res, next) => {
   Achievement.find().exec((err, achievements) => {
