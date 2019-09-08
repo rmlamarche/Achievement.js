@@ -25,4 +25,7 @@ export default abstract class API {
       });
     });
   }
+
+  public abstract findById(id: ObjectId): Promise<any>;
+
 }

@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-import IAchievement from '../interfaces/IAchievement';
+import {IAchievementNS} from '../interfaces/IAchievement';
 
 export const AchievementSchema = new Schema(
   {
@@ -67,5 +67,5 @@ export const AchievementSchema = new Schema(
   },
 );
 
-const Achievement = model<IAchievement>('Achievementjs_Achievement', AchievementSchema);
+const Achievement = model<IAchievementNS.IAchievement>('Achievementjs_Achievement', AchievementSchema);
 export default Achievement;

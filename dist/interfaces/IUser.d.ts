@@ -1,15 +1,22 @@
 import { Document, Schema } from 'mongoose';
-export default interface IUser extends Document {
-    userID: string;
-    points?: {
+export declare namespace IUserNS {
+    interface PointsShape {
         total: number;
         current: number;
-    };
-    achievements?: [{
+    }
+    interface AchievementsShape {
         data: object;
         progress: number;
         dateStarted: Date;
         dateAwarded: Date;
         achievement: Schema.Types.ObjectId;
-    }];
+    }
+    export interface IUserShape {
+        userID: string;
+        points?: PointsShape;
+        achievements?: [AchievementsShape];
+    }
+    export interface IUser extends Document, IUserShape {
+    }
+    export {};
 }

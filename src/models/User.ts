@@ -2,7 +2,7 @@ import { model, Schema, set as mongooseSet } from 'mongoose';
 
 mongooseSet('useCreateIndex', true);
 
-import IUser from '../interfaces/IAchievement';
+import { IUserNS } from '../interfaces/IUser';
 
 export const UserSchema = new Schema(
   {
@@ -39,5 +39,5 @@ export const UserSchema = new Schema(
   },
 );
 
-const User = model<IUser>('Achievementjs_User', UserSchema);
+const User = model<IUserNS.IUser>('Achievementjs_User', UserSchema);
 export default User;

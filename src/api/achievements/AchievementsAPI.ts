@@ -1,12 +1,14 @@
-import IAchievement from '../../interfaces/IAchievement';
-import API from '../../interfaces/API';
-import { Model } from 'mongoose';
+import API from '../API';
 import Achievement from '../../models/Achievement';
-import { ObjectId } from 'bson';
+import { ObjectID } from 'bson';
 
 export default class AchievementsAPI extends API {
   constructor() {
     super(Achievement);
+  }
+
+  public findById(id: ObjectID): Promise<any> {
+    return null;
   }
 
 }

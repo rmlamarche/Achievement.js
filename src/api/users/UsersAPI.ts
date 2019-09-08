@@ -1,7 +1,6 @@
-import API from '../../interfaces/API';
-import { Model } from 'mongoose';
+import API from '../API';
 import User from '../../models/User';
-import IUser from '../../interfaces/IUser';
+import { IUserNS } from '../../interfaces/IUser';
 import { ObjectId } from 'bson';
 
 export default class UsersAPI extends API {
@@ -9,13 +8,13 @@ export default class UsersAPI extends API {
     super(User);
   }
 
-  public add(item: IUser): Promise<any> {
+  public add(item: IUserNS.IUserShape): Promise<any> {
     return this._model.create(item);
   }
 
-  public findById(userID: ObjectId): Promise<any[]> {
+  public findById(id: ObjectId): Promise<any[]> {
     return new Promise<any>((resolve, reject) => {
-      this._model.findById(userID).populate('achievements').then(user => {
+      this._model.findById(id).populate('achievements').then(user => {
         resolve(user);
       }).catch(err => {
         reject(err);
