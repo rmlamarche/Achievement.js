@@ -7,7 +7,13 @@ class AchievementsAPI extends API_1.default {
         super(Achievement_1.default);
     }
     findById(id) {
-        return null;
+        return new Promise((resolve, reject) => {
+            this._model.findById(id).populate('dependencies.achievements').then(achievement => {
+                resolve(achievement);
+            }).catch(err => {
+                reject(err);
+            });
+        });
     }
 }
 exports.default = AchievementsAPI;

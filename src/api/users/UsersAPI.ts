@@ -8,12 +8,12 @@ export default class UsersAPI extends API {
     super(User);
   }
 
-  public add(item: IUserNS.IUserShape): Promise<any> {
+  public add(item: IUserNS.IUserShape): Promise<IUserNS.IUserShape> {
     return this._model.create(item);
   }
 
-  public findById(id: ObjectId): Promise<any[]> {
-    return new Promise<any>((resolve, reject) => {
+  public findById(id: ObjectId): Promise<IUserNS.IUserShape> {
+    return new Promise<IUserNS.IUserShape>((resolve, reject) => {
       this._model.findById(id).populate('achievements').then(user => {
         resolve(user);
       }).catch(err => {

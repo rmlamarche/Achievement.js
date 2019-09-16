@@ -8,17 +8,22 @@ export namespace IUserNS {
   }
 
   interface AchievementsShape {
+    type: Schema.Types.ObjectId;
+    ref: 'Achievement';
+  }
+
+  interface AchievementsProgressShape {
     data: object;
     progress: number;
     dateStarted: Date;
     dateAwarded: Date;
-    achievement: Schema.Types.ObjectId; // TODO this should have a ref: 'Achievement' :(
+    achievement: AchievementsShape;
   }
 
   export interface IUserShape {
     userID: string;
     points?: PointsShape;
-    achievements?: [AchievementsShape];
+    achievements?: [AchievementsProgressShape];
   }
 
   export interface IUser extends Document, IUserShape {

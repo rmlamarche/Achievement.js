@@ -2,4 +2,4 @@
 
 'use strict';
 
-module.exports = require('./lib/achievement');
+module.exports = require('./dist/index.js');
