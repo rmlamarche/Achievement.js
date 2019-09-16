@@ -59,6 +59,6 @@ The achievements API is used for interacting with Achievement objects.
 `add(options)`
 
 ### users
-The users API is used for interactive with Users and tracking their achievement progress.
+The users API is used for interacting with Users and tracking their achievement progress.
 
 `add(options)`
