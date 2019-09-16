@@ -47,6 +47,7 @@ export default class AchievementJS {
           if (!user) {
             return next(new Error(`User with id ${userID} not found`));
           }
+          // TODO before checking operation make sure user hasn't already completed this achievement
           // check operation
           switch (achievement.requiredCondition.statistic) {
             case Statistic.complete: { // binary boolean business
@@ -63,7 +64,7 @@ export default class AchievementJS {
             }
           }
           switch (achievement.requiredCondition.operator) {
-            case Op.eq: {
+            case Op.eq: { // check if user count === required count
 
             }
             case Op.ne: {
@@ -89,7 +90,7 @@ export default class AchievementJS {
        *    check for user account //
        *        check operation
        *            update user achievement instance
-       *                trigger event if it gets unlocked
+       *                ?trigger event if it gets unlocked | return response | something
        */
 
         return next();
