@@ -15,12 +15,11 @@ export declare namespace IUserNS {
         dateAwarded: Date;
         achievement: AchievementsShape;
     }
-    export interface IUserShape {
+    interface IUserShape {
         userID: string;
         points?: PointsShape;
         achievements?: [AchievementsProgressShape];
     }
-    export interface IUser extends Document, IUserShape {
+    interface IUser extends Document, IUserShape {
     }
-    export {};
 }

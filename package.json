@@ -1,6 +1,6 @@
 {
   "name": "achievement.js",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1-alpha-001",
   "description": "A Node.js library for tracking user achievements and progress",
   "author": "Ryan LaMarche <ry.lamarchee@gmail.com>",
   "main": "dist/index.js",

@@ -1,5 +1,7 @@
 # Achievement.js
 
+**This package is still under development and is not a stable. Use at your own risk or wait for major version 1.0.0**
+
 A Node.js library for tracking user achievements and progress using express and MongoDB. Project Architecture can be found [here](https://www.lucidchart.com/documents/view/fb160706-6f61-4ea6-b010-68c3e3bb462c/0_0).
 
 ---
@@ -18,7 +20,7 @@ A Node.js library for tracking user achievements and progress using express and 
 ## Install
 
 ```sh
-npm install achievement-js --save
+npm install achievement.js --save
 ```
 
 ## Overview
@@ -44,7 +46,7 @@ const options = {
   }
 };
 
-const achievementjs = require('achievement-js')(options);
+const achievementjs = require('achievement.js')(options);
 
 app.use(achievementjs.router);
 

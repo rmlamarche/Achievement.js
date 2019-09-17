@@ -25,7 +25,7 @@ export declare namespace IAchievementNS {
         qty: number;
         dependencies?: DependenciesShape;
     }
-    export interface IAchievementShape {
+    interface IAchievementShape {
         title: string;
         action: string;
         pointValue?: number;
@@ -33,7 +33,6 @@ export declare namespace IAchievementNS {
         badge?: BadgeShape;
         requiredCondition: RequiredConditionShape;
     }
-    export interface IAchievement extends Document, IAchievementShape {
+    interface IAchievement extends Document, IAchievementShape {
     }
-    export {};
 }
