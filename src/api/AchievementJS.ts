@@ -47,6 +47,23 @@ export default class AchievementJS {
           if (!user) {
             return next(new Error(`User with id ${userID} not found`));
           }
+          const userHasAchievementIndex = user.achievements.findIndex(value =>  value.achievement._id === achievement._id);
+          if (userHasAchievementIndex === -1) { // user does not have that achievement in their array yet
+            // TODO add achievement to user's array of achievement progresses
+            user.achievements.push(
+              {
+                achievement, // TODO these should probably be foreign keys instead of shallow copies ?
+                dateStarted: new Date(),
+                dateAwarded: null,
+                progress: 0,
+                data: {},
+              },
+            );
+          } else { // user has that achievement, need to check progress
+            if (user.achievements[userHasAchievementIndex].dateAwarded === null) {
+              // TODO user has achievement already, exit
+            }
+          }
           // TODO before checking operation make sure user hasn't already completed this achievement
           // check operation
           switch (achievement.requiredCondition.statistic) {

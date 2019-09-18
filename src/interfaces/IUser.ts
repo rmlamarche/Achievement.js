@@ -1,4 +1,5 @@
 import { Document, Schema } from 'mongoose';
+import { IAchievementNS } from './IAchievement';
 
 export namespace IUserNS {
 
@@ -7,9 +8,9 @@ export namespace IUserNS {
     current: number;
   }
 
-  interface AchievementsShape {
+  interface AchievementShape {
     type: Schema.Types.ObjectId;
-    ref: 'Achievement';
+    ref: 'Achievementjs_Achievement';
   }
 
   interface AchievementsProgressShape {
@@ -17,7 +18,7 @@ export namespace IUserNS {
     progress: number;
     dateStarted: Date;
     dateAwarded: Date;
-    achievement: AchievementsShape;
+    achievement: AchievementShape | IAchievementNS.IAchievement;
   }
 
   export interface IUserShape {

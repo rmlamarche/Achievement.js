@@ -1,6 +1,7 @@
 import { Document, Schema } from 'mongoose';
 
 import { Op, Statistic } from '../enums';
+import { ObjectId } from 'bson';
 
 export namespace IAchievementNS {
 
@@ -18,12 +19,12 @@ export namespace IAchievementNS {
 
   interface AchievementsShape {
     type: Schema.Types.ObjectId;
-    ref: 'Achievement';
+    ref: 'Achievementjs_Achievement';
   }
 
   interface DependenciesShape {
     sequential: boolean;
-    achievements: [AchievementsShape];
+    achievements: [AchievementsShape] | [IAchievement] | [any];
   }
 
   interface RequiredConditionShape {

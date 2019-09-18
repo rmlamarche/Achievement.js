@@ -18,8 +18,8 @@ export default class AchievementsAPI extends API {
     });
   }
 
-  public findActiveAchievementByAction(action: string): Promise<IAchievementNS.IAchievementShape> {
-    return new Promise<IAchievementNS.IAchievementShape>((resolve, reject) => {
+  public findActiveAchievementByAction(action: string): Promise<IAchievementNS.IAchievement> {
+    return new Promise<IAchievementNS.IAchievement>((resolve, reject) => {
       this._model.findOne(
         {
           'meta.isActive': true,
