@@ -39,7 +39,7 @@ export default class AchievementJS {
           return next(new Error('action not found'));
         }
         // check for user
-        const userID: ObjectId = 'user' in (req as any) ? (req as any).user.id : null;
+        const userID: ObjectId = req.user && req.user.id ? req.user.id : null;
         if (userID === null) {
           return next(new Error('Expected bson.ObjectId in Request.user.id'));
         }
@@ -52,7 +52,7 @@ export default class AchievementJS {
             // TODO add achievement to user's array of achievement progresses
             user.achievements.push(
               {
-                achievement, // TODO these should probably be foreign keys instead of shallow copies ?
+                achievement, // TODO these should probably be foreign keys instead of shallow copies ? or maybe not actually...
                 dateStarted: new Date(),
                 dateAwarded: null,
                 progress: 0,

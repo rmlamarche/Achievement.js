@@ -9,6 +9,7 @@ export namespace IUserNS {
   }
 
   interface AchievementShape {
+    _id?: undefined;
     type: Schema.Types.ObjectId;
     ref: 'Achievementjs_Achievement';
   }
