@@ -9,7 +9,8 @@ export namespace IUserNS {
   }
 
   interface AchievementShape {
-    _id?: undefined;
+    _id?: undefined; // override
+    requiredCondition?: undefined; // override
     type: Schema.Types.ObjectId;
     ref: 'Achievementjs_Achievement';
   }

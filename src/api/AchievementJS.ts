@@ -52,7 +52,7 @@ export default class AchievementJS {
             // TODO add achievement to user's array of achievement progresses
             user.achievements.push(
               {
-                achievement, // TODO these should probably be foreign keys instead of shallow copies ? or maybe not actually...
+                achievement,
                 dateStarted: new Date(),
                 dateAwarded: null,
                 progress: 0,
@@ -60,44 +60,66 @@ export default class AchievementJS {
               },
             );
           } else { // user has that achievement, need to check progress
+            // TODO make sure the achievement doesn't have incomplete dependencies
             if (user.achievements[userHasAchievementIndex].dateAwarded === null) {
               // TODO user has achievement already, exit
             }
           }
-          // TODO before checking operation make sure user hasn't already completed this achievement
+          // TODO before checking operation make sure user hasn't already completed this achievement -> ! might need to award it here
           // check operation
           switch (achievement.requiredCondition.statistic) {
             case Statistic.complete: { // binary boolean business
-
+              user.achievements[userHasAchievementIndex].progress = 1;
+              user.achievements[userHasAchievementIndex].dateAwarded = new Date();
+              // TODO save and return response / route to next()
             }
             case Statistic.totalCount: { // ++
-
+              user.achievements[userHasAchievementIndex].progress++;
             }
             case Statistic.uniqueCount: { // ++ if data not in user -> achievement -> data already
-
+              // user.achievements[userHasAchievementIndex].data
+              // TODO need some sort of ID in data & in API requests for this statistic
             }
             case Statistic.value: { // ? idk why this exists i forget. something to do with specific values
-
+              // TODO similar to uniqueCount but look for single unique value I guess?
             }
           }
           switch (achievement.requiredCondition.operator) {
             case Op.eq: { // check if user count === required count
-
+              if (user.achievements[userHasAchievementIndex].progress === user.achievements[userHasAchievementIndex].achievement.requiredCondition.qty) {
+                user.achievements[userHasAchievementIndex].dateAwarded = new Date();
+                // TODO save and exit
+              }
             }
             case Op.ne: {
-
+              if (user.achievements[userHasAchievementIndex].progress !== user.achievements[userHasAchievementIndex].achievement.requiredCondition.qty) {
+                user.achievements[userHasAchievementIndex].dateAwarded = new Date();
+                // TODO save and exit
+              }
             }
             case Op.gt: {
-
+              if (user.achievements[userHasAchievementIndex].progress > user.achievements[userHasAchievementIndex].achievement.requiredCondition.qty) {
+                user.achievements[userHasAchievementIndex].dateAwarded = new Date();
+                // TODO save and exit
+              }
             }
             case Op.gte: {
-
+              if (user.achievements[userHasAchievementIndex].progress >= user.achievements[userHasAchievementIndex].achievement.requiredCondition.qty) {
+                user.achievements[userHasAchievementIndex].dateAwarded = new Date();
+                // TODO save and exit
+              }
             }
             case Op.lt: {
-
+              if (user.achievements[userHasAchievementIndex].progress < user.achievements[userHasAchievementIndex].achievement.requiredCondition.qty) {
+                user.achievements[userHasAchievementIndex].dateAwarded = new Date();
+                // TODO save and exit
+              }
             }
             case Op.lte: {
-
+              if (user.achievements[userHasAchievementIndex].progress <= user.achievements[userHasAchievementIndex].achievement.requiredCondition.qty) {
+                user.achievements[userHasAchievementIndex].dateAwarded = new Date();
+                // TODO save and exit
+              }
             }
           }
         }).catch(err2 => next(err2));
@@ -105,7 +127,8 @@ export default class AchievementJS {
       /**
        * check for achievement action URL //
        *    check for user account //
-       *        check operation
+       *      check statistic
+       *        check operation //
        *            update user achievement instance
        *                ?trigger event if it gets unlocked | return response | something
        */
