@@ -3,7 +3,6 @@ import * as mongoose from 'mongoose';
 
 import IAPI from '../interfaces/IAPI';
 import AchievementJSConfig, { MongoURI } from '../interfaces/configs/AchievementJSConfig';
-import Achievement from '../models/Achievement';
 import AchievementsAPI from './achievements/AchievementsAPI';
 import UsersAPI from './users/UsersAPI';
 import { ObjectId } from 'bson';
@@ -31,6 +30,16 @@ export default class AchievementJS {
       console.error(err);
     });
 
+
+
+    /**
+     * TODO maybe do this different because of shallow copies, might be better to check for userHasAchievement first before getting achievement from DB...
+     * ? OR maybe just update the users shallow copy if the main achievement has changed?
+     */
+
+
+
+
     const middleware = (req: Request, res: Response, next: NextFunction) => {
       // check for achievment with action on scope
       const action: string = req.url.split(config.scope).slice(1)[0].split('?').shift();
@@ -47,7 +56,7 @@ export default class AchievementJS {
           if (!user) {
             return next(new Error(`User with id ${userID} not found`));
           }
-          const userHasAchievementIndex = user.achievements.findIndex(value =>  value.achievement._id === achievement._id);
+          const userHasAchievementIndex = user.achievements.findIndex(value => value.achievement._id === achievement._id);
           if (userHasAchievementIndex === -1) { // user does not have that achievement in their array yet
             // TODO add achievement to user's array of achievement progresses
             user.achievements.push(
